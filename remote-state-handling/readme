@@ -1,0 +1,1 @@
+Start by creating an S3 bucket and a DynamoDB table using the specified configuration( state lock mech...). Then, navigate to the EC2 folder and create an instance in a different workspace. This setup will store your Terraform state file separately for each workspace, ensuring full isolation.
