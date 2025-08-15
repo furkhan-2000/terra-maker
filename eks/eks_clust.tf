@@ -7,7 +7,7 @@ resource "aws_eks_cluster" "mustang" {
 access_config {
   authentication_mode = "API"
 } 
-
+      #### ITS EKS MANAGED AND LILL EXPENSIVE< ITS NOT SELF MANAGED its eks managed node group 
   vpc_config {
     subnet_ids              = data.aws_subnets.default.ids
     endpoint_private_access = var.priendpoint_access
