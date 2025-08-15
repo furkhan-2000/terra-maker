@@ -26,7 +26,7 @@ variable "aws_security_group_name" {
 variable "instance_type_workspace" {
   type = map(list(string))
   default = {
-    "dev"     = ["t2.micro"]
+    "dev"     = ["t2.medium"]
     "prd"     = ["t2.medium", "t2.micro"]
     "default" = ["t2.micro"]
   }
@@ -35,16 +35,16 @@ variable "instance_type_workspace" {
 variable "volume_size" {
   type = map(number)
   default = {
-    "dev"     = 8
+    "dev"     = 10
     "default" = 8
-    "prd"     = 10
+    "prd"     = 12
   }
 }
 
 variable "volume_type" {
   type = map(string)
   default = {
-    "dev"     = "gp2"
+    "dev"     = "gp3"
     "default" = "gp2"
     "prd"     = "gp3"
   }

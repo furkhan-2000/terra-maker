@@ -17,16 +17,30 @@ sudo apt update
 sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 
  sudo usermod -aG docker ubuntu && newgrp docker 
- docker pull furkhan2000/shark:091cd86-vulnmain 
- docker run -d -p 3000:3000 --restart always furkhan2000/shark:091cd86-vulnmain  
+ # Installing UNZIP 
+ sudo apt install unzip -y 
+ # Install AWS CLI
+curl "https://awscli.amazonaws.com/awscli-exe-linux-x86_64.zip" -o "awscliv2.zip"
+unzip awscliv2.zip
+sudo ./aws/install 
+# Install kubectl
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+chmod +x ./kubectl
+sudo mv ./kubectl /usr/local/bin
+# Install eksctl
+curl --silent --location "https://github.com/weaveworks/eksctl/releases/latest/download/eksctl_$(uname -s)_amd64.tar.gz" | tar xz -C /tmp
+sudo mv /tmp/eksctl /usr/local/bin
 
-# installing helm 
+# docker pull furkhan2000/shark:091cd86-vulnmain 
+ #docker run -d -p 3000:3000 --restart always furkhan2000/shark:091cd86-vulnmain  
+
+ # installing helm 
  curl -LO https://get.helm.sh/helm-v3.18.4-linux-amd64.tar.gz
-tar -zxvf helm-v3.18.4-linux-amd64.tar.gz
-sudo mv linux-amd64/helm /usr/local/bin/helm 
+ tar -zxvf helm-v3.18.4-linux-amd64.tar.gz
+ sudo mv linux-amd64/helm /usr/local/bin/helm 
  
-helm repo add bitnami https://charts.bitnami.com/bitnami 
-helm repo add artifacthub https://artifacthub.github.io/helm-charts          
-helm repo update   
+ helm repo add bitnami https://charts.bitnami.com/bitnami 
+ #helm repo add artifacthub https://artifacthub.github.io/helm-charts          
+ helm repo update   
 
- helm install opera bitnami/argo-cd
+ helm install opera bitnami/argo-cd 
