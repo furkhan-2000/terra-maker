@@ -5,7 +5,7 @@ terraform {
       version = "6.8.0"
     }
   }
-  backend "s3" {
+   backend "s3" {
     bucket               = "mirinda-soda"
     key                  = "terraform.tfstate"
     region               = "us-east-1"

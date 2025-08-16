@@ -49,31 +49,57 @@ variable "volume_type" {
     "prd"     = "gp3"
   }
 }
+
 variable "bucket_name" {
   type    = string
   default = "maaza_s3_hyd"
 }
+
 variable "bucket_versioning" {
   type    = string
   default = "Enabled"
 }
+
 variable "server_side_algorithm" {
   type    = string
   default = "AES256"
 }
+
 variable "block_public_acls" {
   type    = bool
   default = true
 }
+
 variable "ignore_public_acls" {
   type    = bool
   default = true
 }
+
 variable "public_policy" {
   type    = bool
   default = true
 }
+
 variable "public_buckets" {
   type    = bool
   default = true
+}
+
+variable "spot_price" {
+  type = map(string)
+  default = {
+    "default" = "0.05"
+    "dev"     = "0.05"
+    "prd"     = "0.10"
+  }
+}
+
+variable "spot_instance_type" {
+  type    = string
+  default = "one-time"
+}
+
+variable "interruption_behavior" {
+  type    = string
+  default = "terminate"
 }

@@ -56,6 +56,15 @@ resource "aws_instance" "hyd-machine" {
   user_data              = file("userdata.sh")
   vpc_security_group_ids = [aws_security_group.hyd-aws_subnet.id]
 
+  instance_market_options {
+    market_type = "spot"
+    spot_options {
+      max_price                      = var.spot_price[terraform.workspace]
+      spot_instance_type             = var.spot_instance_type
+      instance_interruption_behavior = var.interruption_behavior
+    }
+  }
+
   root_block_device {
     volume_size = var.volume_size[terraform.workspace] # used when multiple env in same file: var.env == "dev" ? 9 : var.env == "prd" ? 11 : 8
     volume_type = var.volume_type[terraform.workspace] #var.env == "prd" ? "gp3" : "gp2"
